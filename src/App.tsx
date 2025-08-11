@@ -8,15 +8,12 @@ type Todo = {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [input, setInput] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleAddTodo = () => {
-    if (input.trim()) {
-      setTodos([
-        ...todos,
-        { id: todos.length + 1, title: input, completed: false },
-      ]);
-      setInput("");
+    if (title.trim()) {
+      setTodos([...todos, { id: todos.length + 1, title, completed: false }]);
+      setTitle("");
     }
   };
 
@@ -45,8 +42,9 @@ function App() {
           <div className="flex gap-2 mb-6">
             <input
               type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="新しいタスクを入力..."
               aria-label="新しいタスクを入力"
